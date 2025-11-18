@@ -22,6 +22,7 @@
     "seed-programs": "tsx scripts/seed-programs-sql.ts",
     "seed-service": "tsx scripts/seed-service-sql.ts",
     "seed-staff": "tsx scripts/seed-staff-sql.ts",
+    "seed-real": "tsx scripts/seed-real.ts",
     "start": "next start",
     "typecheck": "tsc --noEmit"
   },

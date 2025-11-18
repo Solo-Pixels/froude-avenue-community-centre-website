@@ -10,12 +10,12 @@ import Image from "next/image";
 const NavBar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks = [
+  const navLinks: Array<{ name: string; href: string; isEmail?: boolean }> = [
     { name: "About", href: "/#about" },
     { name: "Program", href: "/#program" },
     { name: "Service", href: "/#service" },
     { name: "Outreach", href: "/#outreach" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Contact", href: "/#footer", isEmail: false },
   ];
 
   return (
@@ -30,7 +30,7 @@ const NavBar = () => {
             <Image
               src={logo}
               alt="Froude Avenue Community Center Logo"
-              className="h-12 w-12 rounded-full"
+              className="h-16 w-16 rounded-full"
             />
             <span className="text-primary text-2xl font-bold">
               Froude Avenue Community Center
@@ -39,15 +39,25 @@ const NavBar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-foreground hover:text-primary font-medium transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.isEmail ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-foreground hover:text-primary font-medium transition-colors"
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-foreground hover:text-primary font-medium transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ),
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -64,16 +74,27 @@ const NavBar = () => {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="border-border border-t py-4 md:hidden">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-foreground hover:text-primary block py-3 font-medium transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.isEmail ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-foreground hover:text-primary block py-3 font-medium transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-foreground hover:text-primary block py-3 font-medium transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ),
+            )}
           </div>
         )}
       </div>

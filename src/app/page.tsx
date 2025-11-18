@@ -2,6 +2,7 @@ import { api, HydrateClient } from "@/trpc/server";
 
 import NavBar from "./_components/NavBar";
 import Hero from "./_components/Hero";
+import Banner from "./_components/Banner";
 import About from "./_components/About";
 import Program from "./_components/Program";
 import Service from "./_components/Service";
@@ -16,6 +17,7 @@ export default async function Home() {
     <HydrateClient>
       <NavBar />
       <Hero />
+      <Banner />
       <About />
       <Program />
       <Service />

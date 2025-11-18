@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft } from "lucide-react";
 import NavBar from "@/app/_components/NavBar";
 import Footer from "@/app/_components/Footer";
-import Link from "next/link";
+import ContactButton from "@/app/_components/ContactButton";
 
 import { api } from "@/trpc/server";
 
@@ -58,13 +56,7 @@ const ServicesPage = async () => {
               Our team is here to help. Reach out before your visit, or stop by
               the front desk to connect with a staff member who can assist you.
             </p>
-            <Button
-              size="lg"
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
-              asChild
-            >
-              <Link href="/#contact">Contact Our Team</Link>
-            </Button>
+            <ContactButton />
           </div>
         </div>
       </main>

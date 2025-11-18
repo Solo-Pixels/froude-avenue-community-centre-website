@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import NavBar from "@/app/_components/NavBar";
 import Footer from "@/app/_components/Footer";
-import Link from "next/link";
-import GoBack from "@/app/_components/GoBack";
+import ContactButton from "@/app/_components/ContactButton";
 
 import { api } from "@/trpc/server";
 
@@ -62,13 +60,7 @@ const ProgramsPage = async () => {
               Reach out to our team to register for a program, volunteer, or ask
               questions about upcoming sessions.
             </p>
-            <Button
-              size="lg"
-              className="bg-accent text-accent-foreground hover:bg-accent/90"
-              asChild
-            >
-              <Link href="/#contact">Contact Our Team</Link>
-            </Button>
+            <ContactButton />
           </div>
         </div>
       </main>
