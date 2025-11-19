@@ -8,7 +8,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 export const metadata: Metadata = {
   title: "Froude Avenue Community Center",
   description: "Froude Avenue Community Center",
-  icons: [{ rel: "icon", url: "/logo.png" }],
+  icons: [{ rel: "icon", url: "/logo.ico" }],
 };
 
 const geist = Geist({

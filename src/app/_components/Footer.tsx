@@ -146,7 +146,7 @@ const Footer = () => {
               &copy; {new Date().getFullYear()} Froude Avenue Community Centre.
               All rights reserved.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            {/* <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/privacy-policy"
                 className="transition-opacity hover:opacity-80"
@@ -167,7 +167,7 @@ const Footer = () => {
               >
                 Accessibility Statement
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
