@@ -31,6 +31,10 @@ const Gallery = async () => {
         <h2 className="mb-4 text-center text-4xl font-bold text-[rgba(8,88,95,1)] md:text-5xl">
           Gallery
         </h2>
+        <p className="text-muted-foreground mx-auto mb-12 max-w-2xl text-center text-lg">
+          Take a look at some of the wonderful moments and activities at our
+          community centre.
+        </p>
         {images.length === 0 ? (
           <div className="py-12 text-center">
             <p className="text-muted-foreground">
