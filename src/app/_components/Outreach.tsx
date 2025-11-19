@@ -23,21 +23,21 @@ const Outreach = () => {
             youth, and seniors throughout the week, bringing resources and
             connection closer to home for every family.
           </p>
+        </div>
 
-          <div className="text-center">
-            <Button
-              asChild
-              size="lg"
-              className="text-accent-foreground bg-accent hover:bg-accent-foreground/80 border-accent-foreground/50 hover:border-accent-foreground/80 mt-10 rounded-lg border-2 px-8 py-6 md:mt-12 lg:mt-16"
+        <div className="text-center">
+          <Button
+            asChild
+            size="lg"
+            className="text-accent-foreground bg-accent hover:bg-accent-foreground/80 border-accent-foreground/50 hover:border-accent-foreground/80 mt-10 rounded-lg border-2 px-8 py-6 md:mt-12 lg:mt-16"
+          >
+            <Link
+              href="/pages/outreach"
+              className="text-muted-foreground text-xl transition-colors hover:text-white"
             >
-              <Link
-                href="/pages/outreach"
-                className="text-muted-foreground text-xl transition-colors hover:text-white"
-              >
-                Learn More About Our Outreach
-              </Link>
-            </Button>
-          </div>
+              Learn More About Our Outreach
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

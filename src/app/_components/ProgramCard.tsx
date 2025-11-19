@@ -72,7 +72,13 @@ const ProgramCard = ({ program }: { program: Program }) => {
         <h3 className="text-foreground mb-2 text-2xl font-bold">
           {program.title}
         </h3>
-        <p className="text-muted-foreground mb-2 text-sm leading-relaxed md:text-base">
+        <p
+          className={`text-muted-foreground mb-2 text-sm leading-relaxed md:text-base ${
+            isExpanded
+              ? "program-description-scroll max-h-[200px] overflow-y-auto pr-2"
+              : ""
+          }`}
+        >
           {isExpanded ? (
             program.description
           ) : (
