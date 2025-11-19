@@ -137,24 +137,3 @@ export const serviceSeedData: Prisma.serviceCreateInput[] = [
     icon: null,
   },
 ];
-
-export const partnerSeedData: Prisma.partnerCreateInput[] = [
-  {
-    title: "City of St. John's",
-  },
-  {
-    title: "Newfoundland and Labrador Housing",
-  },
-  {
-    title: "United Way",
-  },
-  {
-    title: "Community Food Sharing Association",
-  },
-  {
-    title: "St. John's Public Library",
-  },
-  {
-    title: "Eastern Health",
-  },
-];

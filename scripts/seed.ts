@@ -3,7 +3,6 @@ import {
   staffSeedData,
   programSeedData,
   serviceSeedData,
-  partnerSeedData,
 } from "../seed/data.js";
 
 const prisma = new PrismaClient({
@@ -53,23 +52,12 @@ async function main() {
     const serviceCount = await prisma.service.count();
     console.log(`✅ Created services. Total: ${serviceCount}`);
 
-    // Seed Partners
-    console.log("📝 Seeding partners...");
-    for (const partner of partnerSeedData) {
-      await prisma.partner.create({
-        data: partner,
-      });
-    }
-    const partnerCount = await prisma.partner.count();
-    console.log(`✅ Created partners. Total: ${partnerCount}`);
-
     // Verify all data
-    const totalCount = staffCount + programCount + serviceCount + partnerCount;
+    const totalCount = staffCount + programCount + serviceCount;
     console.log(`\n📊 Verification:`);
     console.log(`   Staff: ${staffCount}`);
     console.log(`   Programs: ${programCount}`);
     console.log(`   Services: ${serviceCount}`);
-    console.log(`   Partners: ${partnerCount}`);
     console.log(`   Total Records: ${totalCount}`);
 
     console.log("\n🎉 Seed process completed successfully!");

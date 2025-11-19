@@ -1,7 +1,6 @@
 import { Card } from "@/components/ui/card";
 import NavBar from "@/app/_components/NavBar";
 import Footer from "@/app/_components/Footer";
-import GoBack from "@/app/_components/GoBack";
 
 const outreachSites = [
   {

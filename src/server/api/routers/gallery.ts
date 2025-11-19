@@ -14,7 +14,9 @@ export const galleryRouter = createTRPCRouter({
   getAll: publicProcedure.query(
     async (): Promise<{ images: GalleryImage[] }> => {
       try {
-        const bucketUrl = (env.R2BUCKET_URL as string | undefined) ?? null;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const bucketUrl: string | null =
+          typeof env.R2BUCKET_URL === "string" ? env.R2BUCKET_URL : null;
 
         console.log("[Gallery] Starting image fetch...");
         console.log(
@@ -28,25 +30,34 @@ export const galleryRouter = createTRPCRouter({
         }
 
         // Check if we have R2 credentials to list objects
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const accountId =
+          typeof env.R2_ACCOUNT_ID === "string" ? env.R2_ACCOUNT_ID : null;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const accessKeyId =
+          typeof env.R2_ACCESS_KEY_ID === "string"
+            ? env.R2_ACCESS_KEY_ID
+            : null;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const secretAccessKey =
+          typeof env.R2_SECRET_ACCESS_KEY === "string"
+            ? env.R2_SECRET_ACCESS_KEY
+            : null;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const bucketName =
+          typeof env.R2_BUCKET_NAME === "string" ? env.R2_BUCKET_NAME : null;
+
         const hasCredentials =
-          typeof env.R2_ACCOUNT_ID === "string" &&
-          typeof env.R2_ACCESS_KEY_ID === "string" &&
-          typeof env.R2_SECRET_ACCESS_KEY === "string" &&
-          typeof env.R2_BUCKET_NAME === "string";
+          accountId !== null &&
+          accessKeyId !== null &&
+          secretAccessKey !== null &&
+          bucketName !== null;
 
         console.log("[Gallery] Credentials check:", {
-          R2_ACCOUNT_ID:
-            typeof env.R2_ACCOUNT_ID === "string" ? "✓ Set" : "✗ Not set",
-          R2_ACCESS_KEY_ID:
-            typeof env.R2_ACCESS_KEY_ID === "string" ? "✓ Set" : "✗ Not set",
-          R2_SECRET_ACCESS_KEY:
-            typeof env.R2_SECRET_ACCESS_KEY === "string"
-              ? "✓ Set"
-              : "✗ Not set",
-          R2_BUCKET_NAME:
-            typeof env.R2_BUCKET_NAME === "string"
-              ? `✓ Set (${env.R2_BUCKET_NAME})`
-              : "✗ Not set",
+          R2_ACCOUNT_ID: accountId ? "✓ Set" : "✗ Not set",
+          R2_ACCESS_KEY_ID: accessKeyId ? "✓ Set" : "✗ Not set",
+          R2_SECRET_ACCESS_KEY: secretAccessKey ? "✓ Set" : "✗ Not set",
+          R2_BUCKET_NAME: bucketName ? `✓ Set (${bucketName})` : "✗ Not set",
         });
 
         if (hasCredentials) {
@@ -88,21 +99,24 @@ export const galleryRouter = createTRPCRouter({
                 Bucket: string;
               }) => unknown;
 
-            const endpoint = `https://${env.R2_ACCOUNT_ID as string}.r2.cloudflarestorage.com`;
+            const endpoint = `https://${accountId}.r2.cloudflarestorage.com`;
             console.log("[Gallery] Connecting to R2 endpoint:", endpoint);
-            console.log("[Gallery] Bucket name:", env.R2_BUCKET_NAME as string);
+            console.log("[Gallery] Bucket name:", bucketName);
 
             const s3Client = new S3ClientClass({
               region: "auto",
               endpoint,
               credentials: {
-                accessKeyId: env.R2_ACCESS_KEY_ID as string,
-                secretAccessKey: env.R2_SECRET_ACCESS_KEY as string,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                accessKeyId,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                secretAccessKey,
               },
             });
 
             const command = new ListObjectsV2CommandClass({
-              Bucket: env.R2_BUCKET_NAME as string,
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              Bucket: bucketName,
             });
 
             console.log("[Gallery] Sending ListObjectsV2 command...");
@@ -120,9 +134,11 @@ export const galleryRouter = createTRPCRouter({
 
             // Filter for image files and construct URLs
             // For R2 public dev URL, just append the object key to the base URL
-            const normalizedBucketUrl = bucketUrl.endsWith("/")
-              ? bucketUrl
-              : `${bucketUrl}/`;
+            const normalizedBucketUrl = bucketUrl
+              ? bucketUrl.endsWith("/")
+                ? bucketUrl
+                : `${bucketUrl}/`
+              : "";
 
             console.log("[Gallery] Filtering objects for images...");
             console.log(
