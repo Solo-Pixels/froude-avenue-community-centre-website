@@ -2,6 +2,7 @@ import { staffRouter } from "@/server/api/routers/staff";
 import { programRouter } from "@/server/api/routers/program";
 import { serviceRouter } from "@/server/api/routers/service";
 import { partnerRouter } from "@/server/api/routers/partner";
+import { galleryRouter } from "@/server/api/routers/gallery";
 
 import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
 
@@ -15,6 +16,7 @@ export const appRouter = createTRPCRouter({
   program: programRouter,
   service: serviceRouter,
   partner: partnerRouter,
+  gallery: galleryRouter,
 });
 
 // export type definition of API

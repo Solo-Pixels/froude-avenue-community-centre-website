@@ -7,6 +7,7 @@ import About from "./_components/About";
 import Program from "./_components/Program";
 import Service from "./_components/Service";
 import Partner from "./_components/Partner";
+import Gallery from "./_components/Gallery";
 import Footer from "./_components/Footer";
 import Outreach from "./_components/Outreach";
 
@@ -22,6 +23,7 @@ export default async function Home() {
       <Program />
       <Service />
       <Outreach />
+      <Gallery />
       <Partner />
       <Footer />
     </HydrateClient>
